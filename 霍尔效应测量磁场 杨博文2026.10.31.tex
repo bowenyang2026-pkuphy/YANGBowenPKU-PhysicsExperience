@@ -1,0 +1,443 @@
+\documentclass[UTF8,a4paper,zihao=-4,fontset=fandol]{ctexart}
+\usepackage[margin=22mm,top=21mm,bottom=23mm,headheight=15pt]{geometry}
+\usepackage{amsmath,graphicx,booktabs,tabularx,array,fancyhdr,lastpage}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{3pt}
+\linespread{1.18}
+\setlength{\tabcolsep}{3pt}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small 实验16\quad 霍尔效应测量磁场}
+\fancyhead[R]{\small{杨博文}\quad{2600011318}}
+\fancyfoot[L]{\scriptsize 签名：\underline{\hspace{15mm}}}
+\fancyfoot[R]{\small\thepage\,/\,\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.35pt}
+\ctexset{section={format=\large\bfseries},subsection={format=\normalsize\bfseries}}
+\begin{document}
+
+\thispagestyle{empty}
+\begin{center}
+\vspace*{38mm}
+{\zihao{1}\bfseries 霍尔效应测量磁场}\par\vspace{6mm}
+{\zihao{3}实验16\quad 实验报告}\par
+\vspace{10mm}
+{\large\rule[-2.1982pt]{0pt}{13.43016pt}}\par\vspace{3mm}
+{\large
+\linespread{1.0}\selectfont
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{l}
+1.测量$U_{\mathrm H}$-$I_{\mathrm H}$关系\\
+2.测量$K_{\mathrm H}$\\
+3.计算$B$\\
+4.测量$B$水平方向分布\\
+5.测量$B$垂直方向分布（未完成）\\
+6.计算分析副效应\\
+7.思考题3\\
+\#. 进一步讨论\\
+\end{tabular}\par
+}
+\vspace{12mm}
+{\large
+\linespread{1.0}\selectfont
+\renewcommand{\arraystretch}{1.10}
+\begin{tabular}{c}
+{杨博文}\\
+北京大学物理学院\\
+学号：{2600011318}\\
+{四下5组4号}\\
+实验日期\quad{2026年10月29日}\\
+报告完成日期\quad{2026年10月31日}
+\end{tabular}
+}
+\end{center}
+
+\begingroup
+\raggedbottom
+\linespread{1.0}\selectfont
+\ctexset{section={beforeskip=6pt,afterskip=3pt},subsection={beforeskip=5pt,afterskip=3pt},subsubsection={beforeskip=5pt,afterskip=3pt}}
+\setlength{\parskip}{1pt}
+\setlength{\topsep}{4pt}
+\setlength{\partopsep}{0pt}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\setlength{\abovedisplayshortskip}{3pt}
+\setlength{\belowdisplayshortskip}{3pt}
+\clearpage
+\section*{1.测量$U_{\mathrm H}$-$I_{\mathrm H}$关系}
+所有实验保证霍尔片位于磁体气隙中央，确定坐标 $y_0=11.4\,\mathrm{mm}$，$z_0=18.2\,\mathrm{mm}$。
+
+$I_{\mathrm M}=0.600\,\mathrm{A}$，通过 $I_{\mathrm H}$ 和 $B$ 换向消除副效应。
+
+\begin{center}
+\textbf{表1a\quad 12端电流\quad 34端测量电压\quad $I$-$U_{\mathrm H}$关系表}\par\smallskip
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\linewidth}{c*{6}{>{\centering\arraybackslash}X}}
+\toprule
+组次 & $I_{\mathrm H}$/mA & $U_{++}$/mV & $U_{-+}$/mV & $U_{--}$/mV & $U_{+-}$/mV & $U_{\mathrm H}$/mV\\\midrule
+1 & 2.000 & 5.39 & -5.38 & 5.43 & -5.43 & 5.408\\
+2 & 4.000 & 10.81 & -10.80 & 10.88 & -10.90 & 10.848\\
+3 & 6.000 & 16.19 & -16.16 & 16.30 & -16.25 & 16.225\\
+4 & 8.000 & 21.59 & -21.60 & 21.78 & -21.78 & 21.688\\
+5 & 10.000 & 26.86 & -27.22 & 27.20 & -26.87 & 27.038\\
+\bottomrule\end{tabularx}
+\end{center}\begin{center}
+\textbf{表1b\quad 34端电流\quad 12端测量电压\quad $I$-$U_{\mathrm H}$关系表}\par\smallskip
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\linewidth}{c*{6}{>{\centering\arraybackslash}X}}
+\toprule
+组次 & $I_{\mathrm H}$/mA & $U_{++}$/mV & $U_{-+}$/mV & $U_{--}$/mV & $U_{+-}$/mV & $U_{\mathrm H}$/mV\\\midrule
+1 & 2.000 & 5.38 & -5.38 & 5.43 & -5.42 & 5.403\\
+2 & 4.000 & 10.78 & -10.80 & 10.88 & -10.87 & 10.833\\
+3 & 6.000 & 16.22 & -16.19 & 16.33 & -16.31 & 16.263\\
+4 & 8.000 & 21.60 & -21.56 & 21.74 & -21.70 & 21.650\\
+5 & 10.000 & 27.02 & -26.97 & 27.20 & -27.14 & 27.083\\
+\bottomrule\end{tabularx}
+\end{center}
+\noindent 注：第一次测量数据未消除副效应，报告使用第二次重测数据\par
+\noindent $U_{\mathrm H}$等非直接测量的计算结果适当多保留一位\par
+
+\textbf{修正求法：}
+\[
+U_{\mathrm H}=\frac{\left(U_{++}-U_{+-}-U_{-+}+U_{--}\right)}{4}.
+\]
+
+\begin{center}
+\includegraphics[width=0.49\linewidth]{figures/UH_IH_12.pdf}\hfill
+\includegraphics[width=0.49\linewidth]{figures/UH_IH_34.pdf}
+\end{center}
+
+\noindent 比较得两种情况$U_{\mathrm H}$-$I_{\mathrm H}$曲线几乎相同。\par
+
+\section*{2.测量$K_{\mathrm H}$}
+\noindent 霍尔电流由12端输入，恒定为 $I_{\mathrm H}=10.000\,\mathrm{mA}$\par
+\noindent 使用调0后磁强计测量磁场，在每次测量时转动磁强计霍尔片至最大值时读数\par
+\noindent 通过 $I_{\mathrm H}$ 和 $B$ 换向消除副效应\par
+
+\noindent\begin{minipage}{\linewidth}
+\begin{center}
+\textbf{表2\quad $I_{\mathrm M}$-$U_{\mathrm{H}}$-$B_{\mathrm{ref}}$关系表}\par\smallskip
+\fontsize{8.5}{10.5}\selectfont
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{c*{11}{>{\centering\arraybackslash}X}}
+\toprule
+组次 & \shortstack{$I_{\mathrm M}$\\A} & \shortstack{$B_{\mathrm{ref}}$\\mT} & \shortstack{$U_{++}$\\mV} & \shortstack{$B_{++}$\\mT} & \shortstack{$U_{-+}$\\mV} & \shortstack{$B_{-+}$\\mT} & \shortstack{$U_{--}$\\mV} & \shortstack{$B_{--}$\\mT} & \shortstack{$U_{+-}$\\mV} & \shortstack{$B_{+-}$\\mT} & \shortstack{$U_{\mathrm{H}}$\\mV}\\\midrule
+1 & 0.000 & 0.58 & 0.14 & 0.4 & -0.13 & 0.7 & 0.22 & 0.6 & -0.23 & 0.6 & 0.180\\
+2 & 0.100 & 28.10 & 4.50 & 27.7 & -4.62 & 28.5 & 4.37 & 28.2 & -4.36 & 28.0 & 4.463\\
+3 & 0.200 & 56.98 & 9.05 & 57.1 & -9.31 & 58.4 & 8.70 & 56.7 & -8.68 & 55.7 & 8.935\\
+4 & 0.300 & 86.05 & 13.56 & 86.2 & -13.91 & 87.6 & 13.24 & 85.2 & -13.26 & 85.2 & 13.493\\
+5 & 0.400 & 114.78 & 18.01 & 114.8 & -18.26 & 116.3 & 17.34 & 114.0 & -17.72 & 114.0 & 17.833\\
+6 & 0.500 & 144.03 & 22.70 & 145.1 & -22.76 & 145.2 & 22.22 & 142.9 & -22.25 & 142.9 & 22.483\\
+7 & 0.600 & 172.15 & 26.92 & 172.0 & -27.24 & 174.0 & 26.72 & 171.3 & -26.74 & 171.3 & 26.905\\
+8 & 0.700 & 200.23 & 31.35 & 200.6 & -31.65 & 202.2 & 31.08 & 199.1 & -31.08 & 199.0 & 31.290\\
+9 & 0.800 & 228.25 & 35.72 & 228.5 & -36.03 & 230.5 & 35.61 & 227.0 & -35.53 & 227.0 & 35.723\\
+10 & 0.900 & 256.03 & 40.03 & 256.2 & -40.30 & 257.6 & 40.02 & 255.2 & -40.03 & 255.1 & 40.095\\
+11 & 1.000 & 282.53 & 44.20 & 282.9 & -44.35 & 283.8 & 44.06 & 281.6 & -44.08 & 281.8 & 44.173\\
+\bottomrule\end{tabularx}
+\end{center}
+\end{minipage}\par
+\[
+K_{\mathrm H}=\frac{U_{\mathrm{H}}}{I_{\mathrm H}\,B_{\mathrm{ref}}}
+\]
+\noindent 最小二乘法线性拟合 $B_{\mathrm{ref}}$-$U_{\mathrm{H}}$\par
+
+\[
+U_{\mathrm{H}}=\frac{U_{++}-U_{+-}-U_{-+}+U_{--}}{4},\qquad
+B_{\mathrm{ref}}=\frac{B_{++}+B_{+-}+B_{-+}+B_{--}}{4}
+\]
+\noindent 注：在这里我错误地没有在同一 $I_{\mathrm M}$ 下换向，从而导致同一 $I_{\mathrm M}$ 下每次测量磁场强度有差别，这是操作瑕疵，但已有原始数据且误差较小，故采用求平均的方法求出 $B_{\mathrm{ref}}$\par
+
+\begin{center}
+\includegraphics[width=0.49\linewidth]{figures/UH_Bref.png}
+\end{center}
+
+\begin{samepage}
+\subsection*{最小二乘法拟合与统计不确定度}
+\noindent $n=11$，$I_{\mathrm H}=10.000\,\mathrm{mA}$；暂不计仪器误差，计算使用未舍入数据。
+\[
+U_{\mathrm{H}}=kB_{\mathrm{ref}}+b.
+\]
+
+\[
+k=\frac{\sum_{i=1}^{n}(B_{\mathrm{ref},i}-\overline{B}_{\mathrm{ref}})(U_{\mathrm{H},i}-\overline{U}_{\mathrm{H}})}{\sum_{i=1}^{n}(B_{\mathrm{ref},i}-\overline{B}_{\mathrm{ref}})^2},\qquad
+b=\overline{U}_{\mathrm{H}}-k\overline{B}_{\mathrm{ref}}.
+\]
+\end{samepage}
+\[
+r=\frac{\sum_{i=1}^{n}(B_{\mathrm{ref},i}-\overline{B}_{\mathrm{ref}})(U_{\mathrm{H},i}-\overline{U}_{\mathrm{H}})}{\sqrt{\displaystyle\sum_{i=1}^{n}(B_{\mathrm{ref},i}-\overline{B}_{\mathrm{ref}})^2\sum_{i=1}^{n}(U_{\mathrm{H},i}-\overline{U}_{\mathrm{H}})^2}}.
+\]
+
+\[
+\sigma_k=|k|\sqrt{\frac{1/r^2-1}{n-2}}.
+\]
+\[
+\begin{aligned}
+k&=0.1562\,\mathrm{mV/mT},& b&=0.03451\,\mathrm{mV},\\
+r&=0.9999928,&\sigma_k&=1.972\times10^{-4}\,\mathrm{mV/mT}.
+\end{aligned}
+\]
+
+\[
+\boxed{K_{\mathrm H}=15.62\,\frac{\mathrm{mV}}{\mathrm{mA}\cdot\mathrm T}},\qquad
+\boxed{\sigma_{\mathrm{KH1}}=0.020\,\frac{\mathrm{mV}}{\mathrm{mA}\cdot\mathrm T}}.
+\]
+
+\subsection*{仪器不确定度与合成结果}
+\noindent 允差按均匀分布，各次读数按不相关处理。$j\in\{++,+-,-+,--\}$。
+\[
+\begin{aligned}
+\Delta_{U,ij}&=0.0005\,|U_{ij}|+3\times0.01\,\mathrm{mV},\\
+\Delta_{B,ij}&=0.01\,|B_{ij}|+0.2\,\mathrm{mT},\\
+\Delta_{I_{\mathrm H}}&=0.005\,I_{\mathrm H}+4\times0.001\,\mathrm{mA}.
+\end{aligned}
+\]
+\[
+\sigma_{U,ij}=\frac{\Delta_{U,ij}}{\sqrt3},\qquad
+\sigma_{B,ij}=\frac{\Delta_{B,ij}}{\sqrt3},\qquad
+\sigma_{I_{\mathrm H}}=\frac{\Delta_{I_{\mathrm H}}}{\sqrt3}=0.03118\,\mathrm{mA}.
+\]
+\[
+\sigma_{\mathrm{KH2}}=
+\sqrt{\left(\frac{\partial K_{\mathrm H}}{\partial k}\sigma_{k,\mathrm{inst}}\right)^2
++\left(\frac{\partial K_{\mathrm H}}{\partial I_{\mathrm H}}\sigma_{I_{\mathrm H}}\right)^2}
+=\sqrt{\left(\frac{\sigma_{k,\mathrm{inst}}}{I_{\mathrm H}}\right)^2
++\left(\frac{k\,\sigma_{I_{\mathrm H}}}{I_{\mathrm H}^2}\right)^2},
+\]
+\[
+\boxed{\sigma_{\mathrm{KH2}}=0.057\,\frac{\mathrm{mV}}{\mathrm{mA}\cdot\mathrm T}}.
+\]
+\subsubsection*{不确定度合成}
+\[
+\sigma_{\mathrm{KH}}=\sqrt{\sigma_{\mathrm{KH1}}^2+\sigma_{\mathrm{KH2}}^2}
+=0.061\,\frac{\mathrm{mV}}{\mathrm{mA}\cdot\mathrm T},
+\]
+\[
+\boxed{K_{\mathrm H}=(15.62\pm0.06)\,\frac{\mathrm{mV}}{\mathrm{mA}\cdot\mathrm T}}.
+\]
+
+\section*{3.计算$B$}
+\begin{center}
+\textbf{表3\quad 磁场与励磁电流关系表}\par\smallskip
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{c*{2}{>{\centering\arraybackslash}X}}
+\toprule
+组次 & $I_{\mathrm M}$/A & $B$/mT\\\midrule
+1 & 0.000 & 1.15\\
+2 & 0.100 & 28.57\\
+3 & 0.200 & 57.20\\
+4 & 0.300 & 86.38\\
+5 & 0.400 & 114.2\\
+6 & 0.500 & 143.9\\
+7 & 0.600 & 172.2\\
+8 & 0.700 & 200.3\\
+9 & 0.800 & 228.7\\
+10 & 0.900 & 256.7\\
+11 & 1.000 & 282.8\\
+\bottomrule\end{tabularx}
+\end{center}
+\begin{center}
+\includegraphics[width=0.49\linewidth]{figures/B_IM.png}
+\end{center}
+\noindent 以上为$B$-$I_{\mathrm M}$磁化曲线图，其中$B=U_{\mathrm H}/(K_{\mathrm H}I_{\mathrm H})$，进一步讨论见报告尾\par
+
+\begin{samepage}
+\section*{4.测量$B$水平方向分布}
+\vspace{3mm}
+\noindent 课件要求为 $x$-$B$ 关系，在原始记录时虽含义一样但记为 $y$-$B$，保留原始数据形式，在之后的数据处理过程中将 $y$ 替换为课件要求的 $x$\par
+\noindent 保持 $I_{\mathrm M}=0.600\,\mathrm A$，$I_{\mathrm H}=10.000\,\mathrm{mA}$，由1.得 $x_0=11.4\,\mathrm{mm}$\par
+\noindent 测量时手轮单向转动避免回程差\par
+\noindent 计算每点处 $B=U_{\mathrm H}/(K_{\mathrm H}I_{\mathrm H})$\par
+\end{samepage}
+\begin{center}
+\textbf{表4\quad 水平关系$B$数据表}\par\smallskip
+\fontsize{10.5}{12.5}\selectfont
+\renewcommand{\arraystretch}{1.30}
+\begin{tabularx}{\linewidth}{r*{3}{>{\centering\arraybackslash}X}@{\hspace{6mm}}r*{3}{>{\centering\arraybackslash}X}}
+\toprule
+组次 & \shortstack{$y$/mm\\（实为$x$）} & $U_{\mathrm H}$/mV & $B$/mT & 组次 & \shortstack{$y$/mm\\（实为$x$）} & $U_{\mathrm H}$/mV & $B$/mT\\
+\cmidrule(r{3mm}){1-4}\cmidrule(l{3mm}){5-8}
+1 & 0.0 & 27.06 & 173.23 & 21 & 31.5 & 17.97 & 115.04\\
+2 & 2.0 & 27.07 & 173.30 & 22 & 32.0 & 16.49 & 105.57\\
+3 & 4.0 & 27.09 & 173.43 & 23 & 32.5 & 14.94 & 95.644\\
+4 & 6.0 & 27.10 & 173.49 & 24 & 33.0 & 13.25 & 84.825\\
+5 & 8.0 & 27.10 & 173.49 & 25 & 33.5 & 11.63 & 74.454\\
+6 & 10.0 & 27.10 & 173.49 & 26 & 34.0 & 10.88 & 69.652\\
+7 & 11.4 & 27.10 & 173.49 & 27 & 34.5 & 9.85 & 63.06\\
+8 & 12.0 & 27.10 & 173.49 & 28 & 35.0 & 9.01 & 57.68\\
+9 & 14.0 & 27.10 & 173.49 & 29 & 35.5 & 8.16 & 52.24\\
+10 & 16.0 & 27.09 & 173.43 & 30 & 36.0 & 7.69 & 49.23\\
+11 & 18.0 & 27.08 & 173.36 & 31 & 37.0 & 6.70 & 42.89\\
+12 & 20.0 & 27.06 & 173.23 & 32 & 38.0 & 5.92 & 37.90\\
+13 & 22.0 & 27.02 & 172.98 & 33 & 39.0 & 5.23 & 33.48\\
+14 & 24.0 & 26.97 & 172.66 & 34 & 40.0 & 4.75 & 30.41\\
+15 & 26.0 & 26.81 & 171.63 & 35 & 42.0 & 4.02 & 25.74\\
+16 & 28.0 & 26.04 & 166.70 & 36 & 44.0 & 3.46 & 22.15\\
+17 & 29.0 & 24.91 & 159.47 & 37 & 46.0 & 3.05 & 19.53\\
+18 & 30.0 & 22.36 & 143.15 & 38 & 48.0 & 2.72 & 17.41\\
+19 & 30.5 & 21.34 & 136.62 & 39 & 50.0 & 2.45 & 15.68\\
+20 & 31.0 & 19.79 & 126.69 &  &  &  & \\
+\bottomrule\end{tabularx}
+\end{center}
+\begin{center}
+\includegraphics[height=60.4353mm]{figures/B_x.png}
+\end{center}
+\noindent 变化趋势可概括为中间平稳平台，磁体投影边缘附近大梯度下降。\par
+\noindent 进一步讨论见报告尾\par
+
+\section*{5.测量$B$垂直方向分布（未完成）}
+
+\noindent $B$-$y$关系与$B$-$x$关系方法一致，由于本人物理量表示不同，与$x$方向发生混淆，故没有测量。
+
+\noindent 其结果应该也为中间平稳平台，磁体投影边缘附近大梯度下降。\par
+\noindent 4.中讨论应当同样适用\par
+
+\section*{6.计算分析副效应}
+
+\begin{center}
+\textbf{表5\quad 五种副效应的产生因素与换向规律}\par\smallskip
+\fontsize{10}{12}\selectfont
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{c>{\raggedright\arraybackslash}p{29mm}>{\raggedright\arraybackslash}Xccc}
+\toprule
+序号 & 名称 & 产生因素 & \shortstack{仅$I$\\反向} & \shortstack{仅$B$\\反向} & \shortstack{$I$、$B$\\同时反向}\\\midrule
+1 & 不等位电势差 $U_0$ & 电压触点不在同一等势线上，混入纵向电阻压降 & 变号 & 不变 & 变号\\\addlinespace[3pt]
+2 & 埃廷斯豪森效应 $U_{\mathrm E}$ & 电流与磁场共同产生横向温差，继而产生温差电动势 & 变号 & 变号 & 不变\\\addlinespace[3pt]
+3 & 能斯特效应 $U_{\mathrm N}$ & 纵向温度梯度产生热流，在磁场作用下形成横向电动势 & 不变 & 变号 & 变号\\\addlinespace[3pt]
+4 & 里吉—勒迪克效应 $U_{\mathrm R}$ & 纵向热流在磁场中产生横向温差，继而产生温差电动势 & 不变 & 变号 & 变号\\\addlinespace[3pt]
+5 & 稳定热电势及零点偏置 $U_{\mathrm T}$ & 接点、引线温差产生热电势，以及仪表的稳定零点偏置 & 不变 & 不变 & 不变\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\[
+\begin{aligned}
+U_{\mathrm H}+U_{\mathrm E}
+&=\frac{U_{++}-U_{-+}-U_{+-}+U_{--}}{4},\\[3pt]
+U_0
+&=\frac{U_{++}-U_{-+}+U_{+-}-U_{--}}{4},\\[3pt]
+U_{\mathrm N}+U_{\mathrm R}
+&=\frac{U_{++}+U_{-+}-U_{+-}-U_{--}}{4},\\[3pt]
+U_{\mathrm T}
+&=\frac{U_{++}+U_{-+}+U_{+-}+U_{--}}{4}.
+\end{aligned}
+\]
+
+\noindent 由于$U_{\mathrm E}$与$U_{\mathrm H}$一同随$I_{\mathrm H}$、$B$反向而变化，无法分离两者，且$U_{\mathrm E}\ll U_{\mathrm H}$，故在之后不再考虑埃廷豪森效应，近似有
+\[
+U_{\mathrm H}\approx\frac{U_{++}-U_{-+}-U_{+-}+U_{--}}{4}.
+\]
+\noindent 这一结果已在1、2部分实验中使用。
+
+\noindent $U_{\mathrm N}$和$U_{\mathrm R}$变化相同，且里吉—勒迪克效应是二阶副效应，因此两者之后一同考虑。
+
+\noindent 以下列表计算各个副效应，且不再计算$U_{\mathrm H}$。
+
+\noindent a.参考1中数据，固定$B$（$I_{\mathrm M}$）不变，计算各副效应随$I_{\mathrm H}$的变化。由于12端、34端结果相同，故只需考虑12端情况。
+
+\noindent\begin{minipage}{\linewidth}
+\begin{center}
+\textbf{表6a\quad 固定磁场时各副效应随$I_{\mathrm H}$的变化}\par\smallskip
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\linewidth}{c*{4}{>{\centering\arraybackslash}X}}
+\toprule
+组次 & $I_{\mathrm H}$/mA & $U_0$/mV & $(U_{\mathrm N}+U_{\mathrm R})$/mV & $U_{\mathrm T}$/mV\\\midrule
+1 & 2.000 & -0.023 & 0.003 & 0.003\\
+2 & 4.000 & -0.043 & 0.008 & -0.003\\
+3 & 6.000 & -0.050 & -0.005 & 0.020\\
+4 & 8.000 & -0.093 & -0.003 & -0.003\\
+5 & 10.000 & 0.003 & -0.173 & -0.008\\
+\bottomrule\end{tabularx}
+\end{center}
+\end{minipage}
+
+\noindent 可以看出，由于测量精度限制，数据数目较少，难以得到确证的结论，但尝试分析如下：
+
+\noindent $U_{\mathrm N}+U_{\mathrm R}$和$U_{\mathrm T}$在$0$附近无序分布，可以推测其强度与$I_{\mathrm H}$无关，或其关系被测量误差覆盖。
+
+\noindent $U_0$在除去第5组数据外近似与$I_{\mathrm H}$成正比，以下线性拟合$U_0$-$I_{\mathrm H}$关系。
+
+\begin{samepage}
+\[
+\begin{aligned}
+k&=-0.01088\,\mathrm{mV/mA},& b&=0.002500\,\mathrm{mV},\\
+r&=-0.9529,& \sigma_k&=0.002446\,\mathrm{mV/mA}.
+\end{aligned}
+\]
+\[
+U_0=\left(-0.01088I_{\mathrm H}+0.002500\right)\,\mathrm{mV}.
+\]
+\noindent a.和b.中的线性拟合计算方法均与前文一致。
+\end{samepage}
+
+\noindent\begin{minipage}{\linewidth}
+\noindent b.参考2中数据，固定$I_{\mathrm H}$不变，计算各副效应随3中算得$B$的变化。
+\begin{center}
+\textbf{表6b\quad 固定霍尔电流时各副效应随$B$的变化}\par\smallskip
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\linewidth}{c*{5}{>{\centering\arraybackslash}X}}
+\toprule
+组次 & $I_{\mathrm M}$/A & $B$/mT & $U_0$/mV & $(U_{\mathrm N}+U_{\mathrm R})$/mV & $U_{\mathrm T}$/mV\\\midrule
+1 & 0.000 & 1.15 & -0.045 & 0.005 & 0.000\\
+2 & 0.100 & 28.57 & 0.098 & -0.033 & -0.028\\
+3 & 0.200 & 57.20 & 0.245 & -0.070 & -0.060\\
+4 & 0.300 & 86.38 & 0.243 & -0.083 & -0.093\\
+5 & 0.400 & 114.2 & 0.303 & 0.033 & -0.158\\
+6 & 0.500 & 143.9 & 0.248 & -0.008 & -0.023\\
+7 & 0.600 & 172.2 & 0.175 & -0.075 & -0.085\\
+8 & 0.700 & 200.3 & 0.210 & -0.075 & -0.075\\
+9 & 0.800 & 228.7 & 0.153 & -0.098 & -0.058\\
+10 & 0.900 & 256.7 & 0.070 & -0.065 & -0.070\\
+11 & 1.000 & 282.8 & 0.103 & -0.033 & -0.043\\
+\bottomrule\end{tabularx}
+\end{center}
+\end{minipage}
+
+\noindent 同样由于测量精度限制，数据数目较少，难以得到确证的结论，但尝试分析如下：
+
+\noindent\begin{minipage}{\linewidth}
+\noindent 按$U=kB+b$线性拟合：
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\linewidth}{c*{4}{>{\centering\arraybackslash}X}}
+\toprule
+拟合量 & $k$/（mV/mT） & $b$/mV & $r$ & $\sigma_k$/（mV/mT）\\\midrule
+$U_0$ & $5.232\times10^{-5}$ & 0.1562 & 0.04876 & $3.572\times10^{-4}$\\
+$U_{\mathrm N}+U_{\mathrm R}$ & $-1.589\times10^{-4}$ & -0.02274 & -0.3605 & $1.371\times10^{-4}$\\
+$U_{\mathrm T}$ & $-8.600\times10^{-5}$ & -0.05044 & -0.1918 & $1.467\times10^{-4}$\\
+\bottomrule\end{tabularx}
+\end{center}
+\end{minipage}
+
+\noindent 几个物理量的相关性均不明显，只能猜测$U_{\mathrm N}+U_{\mathrm R}$与$B$成正比，这与先前严格测量结果和理论一致，但并不能由本实验推测得到。
+
+\noindent 对这部分的进一步见报告尾。
+
+\section*{7.思考题3}
+\textbf{题目：}在测量 $B$--$I_{\mathrm M}$ 曲线中，$I_{\mathrm M}=0$ 时 $U_{\mathrm H}$ 测量端仍有较小的电压，这是为什么？
+
+励磁电流为零并不等于霍尔片所在位置的磁场严格为零。电磁铁铁芯有磁滞，撤去励磁后可能仍有剩磁，环境磁场也可能对示值有小的贡献。
+
+\section*{\#. 进一步讨论}
+
+\noindent 1.关于3部分：在这里的实验要求的处理是线性拟合$B$-$I_{\mathrm M}$，但是$B$本身就是由线性拟合得到的$K_{\mathrm H}$计算得的结果，我猜测这里不直接使用测量量$B_{\mathrm{ref}}$的原因是通过两次拟合间接降低由于实验条件（磁强计难以深入气隙，难以固定等）导致可靠性较低的磁强计测量结果引入的误差，尝试做$B_{\mathrm{ref}}$-$I_{\mathrm M}$关系曲线，也得到了线性度较好和$I_{\mathrm M}$较大处向下偏离线性程度相当的结果：
+
+\noindent $B$-$I_{\mathrm M}$曲线，$r=0.99995$，$1.000\,\mathrm A$处比拟合直线低约$1.99\,\mathrm{mT}$；$B_{\mathrm{ref}}$-$I_{\mathrm M}$曲线，$r=0.99994$，$1.000\,\mathrm A$处比拟合直线低约$2.04\,\mathrm{mT}$。
+
+\begin{center}
+\includegraphics[height=60.4353mm]{figures/Bref_IM.png}
+\end{center}
+
+\noindent 此外，这部分测量时也没有考虑磁滞等影响，例如并没有要求磁化和退磁过程分开测量，这应当也是因为$B$相对较大时这部分误差可忽略；我在测量时两个过程的偏差也小于同一$I_{\mathrm M}$多次测量这一瑕疵造成的$B$的变化，因此确实无需考虑。
+
+\noindent 2.关于4部分：这曲线的平台段较短且下降梯度较低，可能是因为气隙厚度大漏磁多，也可能是因为霍尔片长度较长导致测量结果是这一区间内的平均值；取半平台高处为磁体投影边缘算得$a=2(x_{1/2}-x_0)=43.02\,\mathrm{mm}$，另一侧由于行程限制不能测得。
+
+\noindent 3.关于6部分：本实验条件和操作测量准确性导致不能确定副效应与$I_{\mathrm H}$、$B$关系，值得考虑的是固定$I_{\mathrm H}$时的结果要差得多，这可能是前面多次测量磁场不一致最后取平均的原因，更可能是本身磁场分布不均匀，磁场测量精度低的原因。
+
+\noindent\textbf{对本次实验课后报告使用AI情况的说明：}该课后报告由AI辅助生成数据表格模板和插入图片等所用tex语句较复杂的部分,实验分析文字和公式计算仍为手工进行,数据表内实际测量数据也手工添加以确保准确真实;数据图使用Python生成。
+
+\endgroup
+\end{document}
