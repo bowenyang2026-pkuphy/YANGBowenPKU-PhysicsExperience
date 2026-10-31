@@ -1,2 +1,2 @@
 # YANGBowenPKU-PhysicsExperience
-存放北京大学物理学院普通物理实验相关证明材料与源码
+存放北京大学物理学院普通物理实验相关材料
