@@ -1,0 +1,823 @@
+\documentclass[UTF8,a4paper,zihao=-4,fontset=fandol]{ctexart}
+\usepackage[margin=22mm,top=21mm,bottom=23mm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb,booktabs,tabularx,array,enumitem,fancyhdr,lastpage,needspace,graphicx}
+\usepackage[europeanresistors]{circuitikz}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={电桥综合实验}}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{2pt}
+\setlength{\tabcolsep}{4pt}
+\linespread{1.0}
+\raggedbottom
+\setlist[enumerate]{leftmargin=2em,itemsep=2pt,topsep=3pt}
+\ctexset{section={format=\large\bfseries,beforeskip=10pt,afterskip=5pt},subsection={format=\normalsize\bfseries,beforeskip=7pt,afterskip=3pt}}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\setlength{\abovedisplayshortskip}{4pt}
+\setlength{\belowdisplayshortskip}{4pt}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small 实验14、15\quad 直流电桥与铂电阻测温}
+\fancyfoot[L]{\scriptsize 签名\quad\underline{\hspace{15mm}}}
+\fancyfoot[R]{\small\thepage\,/\,\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.35pt}
+\AddToHook{cmd/section/before}{\Needspace{6\baselineskip}}
+\AddToHook{cmd/subsection/before}{\Needspace{4\baselineskip}}
+\begin{document}
+\begin{titlepage}
+\centering
+\vspace*{38mm}
+{\zihao{1}\bfseries 电桥综合实验}\par\vspace{6mm}
+{\zihao{3}实验14、15\quad 实验报告}\par
+\vspace{13mm}
+{\large
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{l}
+1.平衡电桥\\
+2.非平衡电桥测热敏电阻$R_T$关系\\
+3.选做实验1\\
+4.选做实验2\\
+5.讨论与感想\\
+\#.进一步讨论\\
+\end{tabular}\par}
+\vspace{17mm}
+{\large
+\linespread{1.0}\selectfont
+\renewcommand{\arraystretch}{1.10}
+\begin{tabular}{c}
+{杨博文}\\
+北京大学物理学院\\
+学号：{2600011318}\\
+{四下5组4号}\\
+实验日期\quad{2026年11月5日}\\
+报告完成日期\quad{2026年11月6日}
+\end{tabular}}
+\end{titlepage}
+\setcounter{page}{2}
+
+\section{平衡电桥}
+\setcounter{subsection}{-1}
+\subsection{平衡条件}
+
+\begin{center}
+\begin{circuitikz}[scale=0.8,transform shape,line width=0.75pt]
+\node[font=\small] at (0,6.3) {图1: 平衡电桥};
+\draw (-2.6,2.7) node[left=3pt] {$A$}
+ to[R,l=$R_1$] (0,5.4) node[above=3pt] {$B$}
+ to[R,l=$R_x$] (2.6,2.7) node[right=3pt] {$C$}
+ to[R,l=$R_p$] (0,0) node[below=3pt] {$D$}
+ to[R,l=$R_2$] (-2.6,2.7);
+\draw (0,5.4) -- (0,3.68);
+\draw (0,3.3) circle (0.38) node {$G$};
+\draw (0,2.92) -- (0,1.9)
+ to[R] (0,0.4) -- (0,0);
+\draw (0,3.8) -- (0.7,3.8) to[nos,l=$S_g$] (0.7,2.8) -- (0,2.8);
+\node at (0.65,1.9) {$R_h$};
+\draw (-2.6,2.7) -- (-3.5,2.7) -- (-3.5,-1.25)
+ to[nos,l_=$S_b$] (-1.0,-1.25)
+ to[battery1,l_=$E$] (1.0,-1.25)
+ -- (3.5,-1.25) -- (3.5,2.7) -- (2.6,2.7);
+\foreach \x/\y in {-2.6/2.7,0/5.4,2.6/2.7,0/0,0/3.8,0/2.8}
+ \fill (\x,\y) circle (1.5pt);
+\end{circuitikz}
+\end{center}
+
+\[
+I_1R_1=I_2R_2,\qquad I_1R_x=I_2R_p,
+\qquad \boxed{R_x=\frac{R_1}{R_2}R_p}.
+\]
+在平衡点附近改变 $R_p$，电桥灵敏度定义为
+\[
+S=\frac{|\Delta n|}{|\Delta R_x/R_x|}
+\simeq\frac{|n'-n|}{|R'_p-R_p|/R_p}.
+\]
+桥路在平衡点处的等效内阻为
+\[
+R_{\mathrm{th}}=(R_1\parallel R_x)+(R_2\parallel R_p),
+\qquad g=\frac{R_1}{R_x}=\frac{R_2}{R_p}.
+\]
+忽略电源内阻，平衡点附近有
+\[
+S\simeq\frac{S_iE}{R_{\mathrm{th}}+R_g+R_h}\frac{g}{(1+g)^2}.
+\]
+由此可见，提高电源电压或检流计电流灵敏度、减小检流支路串联电阻，通常可以提高电桥灵敏度。
+
+\setcounter{subsection}{0}
+\subsection{测量电阻与电桥灵敏度}
+\noindent\begin{minipage}[t]{0.49\linewidth}
+\vspace{0pt}\centering
+\textbf{表1\quad 直接测量记录}\par\smallskip
+\scriptsize\renewcommand{\arraystretch}{1.25}\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{l>{\centering\arraybackslash}X}
+\toprule
+测量对象 & 阻值/$\Omega$\\\midrule
+待测电阻 $R_x$ & 33.28\\
+$100\,\Omega$ 电阻 A & 100.08\\
+$100\,\Omega$ 电阻 B & 99.99\\
+$1\,\mathrm{k}\Omega$ 电阻 A & 1000.6\\
+$1\,\mathrm{k}\Omega$ 电阻 B & 1003.5\\
+$10\,\mathrm{k}\Omega$ 电阻 A & 9995\\
+$10\,\mathrm{k}\Omega$ 电阻 B & 10138\\
+\bottomrule
+\end{tabularx}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\vspace{0pt}\centering
+\textbf{表2\quad 平衡电桥测量条件}\par\smallskip
+\scriptsize\renewcommand{\arraystretch}{1.25}\setlength{\tabcolsep}{2pt}
+\begin{tabularx}{\linewidth}{c c c c c X}
+\toprule
+组次 & $E$/V & $R_h$/ $\Omega$ & $R_1$/ $\Omega$ & $R_2$/ $\Omega$ & 条件说明\\\midrule
+1 & 2.0 & 0 & 100（A） & 100（B） & 基准条件\\
+2 & 2.0 & 0 & 100（A） & 1k（B） & 改变桥臂比\\
+3 & 2.0 & 0 & 10k（A） & 10k（B） & 大阻值比率臂\\
+4 & 2.0 & 0 & 10k（B） & 10k（A） & 交换A、B桥臂\\
+5 & 2.0 & 3k & 100（B） & 100（A） & 改变检流支路电阻\\
+6 & 1.0 & 0 & 100（B） & 100（A） & 改变电源电压\\\bottomrule
+\end{tabularx}
+\end{minipage}
+
+\smallskip\noindent A、B真实电阻值由表1给出，$R_h=0$对应电位器电阻值取最小，$R_h=3\,\mathrm{k}\Omega$真实值为$2.988\,\mathrm{k}\Omega$。
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\textbf{表3\quad 测量$R_x$数据}\par\smallskip
+\small\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\linewidth}{c*{7}{>{\centering\arraybackslash}X}}
+\toprule
+组次 & $E$/V & $R_p$/ $\Omega$ & $n$/格 & $R_p^{\prime+}$/ $\Omega$ & $n^{\prime+}$/格 & $R_p^{\prime-}$/ $\Omega$ & $n^{\prime-}$/格\\\midrule
+1 & 2.00 & 33.0 & 0.6 & 33.1 & 9.6 & 32.9 & $-8.4$ \\
+2 & 2.00 & 345.5 & 0.1 & 346.5 & 5.0 & 344.5 & $-4.8$ \\
+3 & 1.99 & 34.2 & 0.9 & 34.4 & 4.0 & 34.0 & $-4.1$ \\
+4 & 2.00 & 33.3 & 0.1 & 33.5 & 4.7 & 33.1 & $-3.8$ \\
+5 & 2.00 & 33.2 & 0.0 & 34.5 & 4.9 & 31.0 & $-7.1$ \\
+6 & 1.00 & 32.8 & 1.0 & 32.9 & 6.2 & 32.7 & $-5.0$ \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{center}
+
+由表2的电阻名义值和表3读数计算待测电阻及间接量：
+\[
+R_x=\frac{R_1}{R_2}R_p,\qquad
+\Delta n=\left|n^{\prime+}-n^{\prime-}\right|,\qquad
+\Delta R_p=\left|R_p^{\prime+}-R_p^{\prime-}\right|,
+\]
+\[
+\frac{\Delta R_p}{R_p}=\frac{\left|R_p^{\prime+}-R_p^{\prime-}\right|}{R_p},\qquad
+S=\frac{\Delta n}{\Delta R_p/R_p}.
+\]
+计算 $R_x$ 时，$R_1$、$R_2$ 取表2所列的 $100\,\Omega$、$1\,\mathrm{k}\Omega$、$10\,\mathrm{k}\Omega$ 名义值；$+$、$-$读数差取完整差值。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\textbf{表4\quad 间接量计算结果}\par\smallskip
+\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{c*{5}{>{\centering\arraybackslash}X}}
+\toprule
+组次 & $R_x$/ $\Omega$ & $\Delta n$/格 & $\Delta R_p$/ $\Omega$ & $\Delta R_p/R_p$ & $S$/格\\\midrule
+1 & 33.0 & 18.0 & 0.2 & $6.061\times10^{-3}$ & $2.970\times10^3$\\
+2 & 34.55 & 9.8 & 2.0 & $5.789\times10^{-3}$ & $1.693\times10^3$\\
+3 & 34.2 & 8.1 & 0.4 & $1.170\times10^{-2}$ & $6.926\times10^2$\\
+4 & 33.3 & 8.5 & 0.4 & $1.201\times10^{-2}$ & $7.076\times10^2$\\
+5 & 33.2 & 12.0 & 3.5 & $1.054\times10^{-1}$ & $1.138\times10^2$\\
+6 & 32.8 & 11.2 & 0.2 & $6.098\times10^{-3}$ & $1.837\times10^3$\\\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{center}
+
+\noindent 注：第1组数据为重测后结果。
+
+取3、4组数据 $R_{\mathrm{AB}}$、$R_{\mathrm{BA}}$，计算交换桥臂测量电阻 $R_x$ 的结果：
+\[
+R_x=\sqrt{R_{\mathrm{AB}}R_{\mathrm{BA}}}
+=\sqrt{34.2\times33.3}\,\Omega
+\approx33.75\,\Omega.
+\]
+
+\subsection{估计不确定度}
+
+先考虑电阻阻值误差的影响。从表5起，计算结果保留4位有效数字，不确定度保留2位有效数字；各项计算均使用未舍入值。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\textbf{表5\quad 名义阻值与实测阻值计算结果}\par\smallskip
+\small\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\linewidth}{c*{4}{>{\centering\arraybackslash}X}}
+\toprule
+组数 & $R_{\mathrm{th}}$/$\Omega$ & $R'$/$\Omega$ & $\Delta R_x$/$\Omega$ & $\eta_{R_x}$\\\midrule
+1 & 33.00 & 33.03 & $-0.02970$ & $8.993\times10^{-4}$\\
+2 & 34.55 & 34.46 & 0.09296 & $2.698\times10^{-3}$\\
+3 & 34.20 & 33.72 & 0.4824 & $1.431\times10^{-2}$\\
+4 & 33.30 & 33.78 & $-0.4764$ & $1.411\times10^{-2}$\\
+5 & 33.20 & 33.17 & 0.02986 & $9.001\times10^{-4}$\\
+6 & 32.80 & 32.77 & 0.02950 & $9.001\times10^{-4}$\\
+7 & 33.75 & 33.75 & 0 & 0\\\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{center}
+\[
+\Delta R_x=R_{\mathrm{th}}-R',\qquad
+\eta_{R_x}=\left|\frac{\Delta R_x}{R'}\right|.
+\]
+
+再考虑测量误差。
+
+以下以表5中的 $R'$ 为中心值估计标准不确定度，仪器允差按均匀分布换算。检流计读数直接取 $\sigma_n=0.30$ 格；桥臂阻值与电阻箱、检流计读数分量之间按不相关处理。计算使用未舍入值。
+
+\noindent\textbf{桥臂阻值的不确定度。}
+\[
+\sigma_R=\begin{cases}
+0.001R/\sqrt3,&100\,\Omega\text{、}1\,\mathrm{k}\Omega\text{电阻},\\
+(0.002R+5\,\Omega)/\sqrt3,&10\,\mathrm{k}\Omega\text{电阻}.
+\end{cases}
+\]
+按表2的A、B对应关系代入表1的实测值，得到
+\[
+\begin{aligned}
+\sigma_{100\mathrm A}&=0.058\,\Omega,&
+\sigma_{100\mathrm B}&=0.058\,\Omega,&
+\sigma_{1\mathrm{kB}}&=0.58\,\Omega,\\
+\sigma_{10\mathrm{kA}}&=14\,\Omega,&
+\sigma_{10\mathrm{kB}}&=15\,\Omega.
+\end{aligned}
+\]
+
+\noindent\textbf{电阻箱与调平读数的不确定度。}
+\[
+\Delta_{\mathrm b}=0.001\sum_{d=10,100,1000,10000}r_d
++0.005r_1+0.02r_{0.1}+0.005\,\Omega.
+\]
+\[
+\begin{aligned}
+\Delta_{\mathrm b,1}&=0.05000\,\Omega,&
+\Delta_{\mathrm b,2}&=0.3800\,\Omega,&
+\Delta_{\mathrm b,3}&=0.05900\,\Omega,\\
+\Delta_{\mathrm b,4}&=0.05600\,\Omega,&
+\Delta_{\mathrm b,5}&=0.05400\,\Omega,&
+\Delta_{\mathrm b,6}&=0.06100\,\Omega.
+\end{aligned}
+\]
+由 $S=\Delta n/(\Delta R_p/R_p)$：
+\[
+\sigma_{p,\mathrm b}=\frac{\Delta_{\mathrm b}}{\sqrt3},\qquad
+\sigma_{p,n}=\frac{R_p}{S}\sigma_n,\qquad
+\sigma_p=\sqrt{\sigma_{p,\mathrm b}^2+\sigma_{p,n}^2}.
+\]
+结果见表6。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\textbf{表6\quad 平衡臂不确定度的各项分量}\par\smallskip
+\small\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\linewidth}{c*{4}{>{\centering\arraybackslash}X}}
+\toprule
+组数 & $\Delta_{\mathrm b}$/$\Omega$ & $\sigma_{p,\mathrm b}$/$\Omega$ & $\sigma_{p,n}$/$\Omega$ & $\sigma_p$/$\Omega$\\\midrule
+1 & 0.05000 & 0.029 & 0.0033 & 0.029\\
+2 & 0.3800 & 0.22 & 0.061 & 0.23\\
+3 & 0.05900 & 0.034 & 0.015 & 0.037\\
+4 & 0.05600 & 0.032 & 0.014 & 0.035\\
+5 & 0.05400 & 0.031 & 0.088 & 0.093\\
+6 & 0.06100 & 0.035 & 0.0054 & 0.036\\\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{center}
+
+\[
+\begin{aligned}
+\sigma_{x,\mathrm{arm}}&=R'\sqrt{\left(\frac{\sigma_{R_1}}{R_1}\right)^2+\left(\frac{\sigma_{R_2}}{R_2}\right)^2},\\
+\sigma_{x,\mathrm b}&=\frac{R_1}{R_2}\sigma_{p,\mathrm b},\qquad
+\sigma_{x,n}=\frac{R_1}{R_2}\sigma_{p,n},\\
+\sigma_x&=\sqrt{\sigma_{x,\mathrm{arm}}^2+\sigma_{x,\mathrm b}^2+\sigma_{x,n}^2}
+=R'\sqrt{\left(\frac{\sigma_{R_1}}{R_1}\right)^2+\left(\frac{\sigma_{R_2}}{R_2}\right)^2+\left(\frac{\sigma_p}{R_p}\right)^2}.
+\end{aligned}
+\]
+
+\noindent\textbf{第7组交换桥臂结果。}
+\[
+R'_7=\sqrt{\left(\frac{R_{\mathrm A}}{R_{\mathrm B}}R_{p,3}\right)
+\left(\frac{R_{\mathrm B}}{R_{\mathrm A}}R_{p,4}\right)}
+=\sqrt{R_{p,3}R_{p,4}}\approx33.75\,\Omega.
+\]
+同一电阻箱的两次仪器分量按完全正相关作保守估计，而不把它们当成两个独立仪器：
+\[
+\begin{aligned}
+\sigma_{x,\mathrm b,7}
+&=\frac{R'_7}{2}\left(\frac{\sigma_{p,\mathrm b,3}}{R_{p,3}}+\frac{\sigma_{p,\mathrm b,4}}{R_{p,4}}\right)
+\approx0.033\,\Omega,\\
+\sigma_{x,n,7}
+&=\frac{R'_7\sigma_n}{2}\sqrt{\frac1{S_3^2}+\frac1{S_4^2}}
+\approx0.010\,\Omega,\\
+\sigma_{x,7}
+&=\sqrt{\sigma_{x,\mathrm b,7}^2+\sigma_{x,n,7}^2}
+\approx0.035\,\Omega.
+\end{aligned}
+\]
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\textbf{表7\quad 测量不确定度与结果（阻值单位均为$\Omega$）}\par\smallskip
+\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{c*{3}{>{\centering\arraybackslash}X}}
+\toprule
+组数 & $R'$ & $\sigma_x$ & $R'\pm\sigma_x$\\\midrule
+1 & 33.03 & 0.040 & $33.03\pm0.040$\\
+2 & 34.46 & 0.036 & $34.46\pm0.036$\\
+3 & 33.72 & 0.078 & $33.72\pm0.078$\\
+4 & 33.78 & 0.078 & $33.78\pm0.078$\\
+5 & 33.17 & 0.097 & $33.17\pm0.097$\\
+6 & 32.77 & 0.045 & $32.77\pm0.045$\\
+7 & 33.75 & 0.035 & $33.75\pm0.035$\\\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{center}
+第5组的主要分量来自检流计读数：增大检流支路电阻后，灵敏度减小，读数误差等效为更大的电阻不确定度。第7组通过交换桥臂消除了比率臂阻值的共同影响，但仍保留电阻箱和调平读数的不确定度。
+
+\section{非平衡电桥测热敏电阻$R_T$关系}
+\setcounter{subsection}{-1}
+\subsection{三线测温电路与理论关系}
+
+\begin{center}
+\begin{circuitikz}[scale=0.83,transform shape]
+\draw (0,2) node[left]{$A$} to[R,l=$R_1$] (2,4) node[above]{$B$}
+ to[R,l=$R_3$] (3.5,4) to[R,l=$R_T$] (5,2) node[above right]{$P$};
+\draw (0,2) to[R,l_=$R_2$] (2,0) node[below]{$D$}
+ to[R,l_=$R_p$] (3.5,0) node[below]{$C'$}
+ to[R,l_=$R_4$] (5,2);
+\draw (2,4) -- (2,2.4);
+\draw (2,2) circle (0.4) node {\small $\mathrm{mV}$};
+\draw (2,1.6) -- (2,0);
+\node at (1.5,2.6) {$+$}; \node at (1.5,1.4) {$-$};
+\draw (5,2) to[R,l=$R_5$] (7,2) node[right]{$C$};
+\draw (0,2) -- (-0.6,2) -- (-0.6,-1.2) to[battery1,l_=$E$] (7,-1.2) -- (7,2);
+\end{circuitikz}\par
+\small 图2\quad 铂电阻三线接法的非平衡电桥
+\end{center}
+
+\[
+U_{\mathrm{out}}=I_1(R_T+R_3)-I_2(R_p+R_4).
+\]
+当 $I_1\simeq I_2$，且两根引线 $R_3\simeq R_4$、温度变化接近时，引线压降在差分输出中近似相消。
+
+在引线补偿残差和电压表负载可以忽略时，由两支路的分压关系得
+\begin{equation}
+U_{\mathrm{out}}=E\left(\frac{R_T}{R_1+R_T}-\frac{R_p}{R_2+R_p}\right).
+\label{eq:bridge}
+\end{equation}
+在所研究温区内采用铂电阻的一阶温度关系
+\[
+R_T=R_0(1+A_1T).
+\]
+将其代入式\eqref{eq:bridge}，固定 $E$、$R_1$、$R_2$、$R_p$，得到
+\[
+U_{\mathrm{out}}(T)-U_{\mathrm{out}}(0)
+=\frac{E R_1R_0A_1T}{(R_1+R_0)(R_1+R_0+R_0A_1T)}.
+\]
+在 $T=0$ 处展开并保留一阶项，令 $k_0$ 为冰点处测温电路的电压灵敏度，则
+\[
+k_0=\left.\frac{\mathrm dU_{\mathrm{out}}}{\mathrm dT}\right|_{T=0}
+=\frac{E R_1R_0A_1}{(R_1+R_0)^2},
+\qquad
+\boxed{A_1=\frac{k_0(R_1+R_0)^2}{E R_1R_0}
+=\frac{k_0(R_2+R_p)^2}{E R_2R_p}}.
+\]
+上述表达式保留了稳压供电下的分压因子。只有在 $R_0\ll R_1$ 时，才可进一步写成 $A_1\simeq k_0R_1/(ER_0)$。$k_0$ 用 $\mathrm{V}/{}^{\circ}\mathrm C$，$E$ 用 $\mathrm V$，电阻统一用 $\Omega$，则 $A_1$ 的单位为 ${}^{\circ}\mathrm C^{-1}$。
+
+\subsection{测量步骤与原始记录}
+\noindent 注意事项：
+\begin{enumerate}
+\item 先确定三线热敏电阻共端线。
+\item 将铂电阻和温度计的感温端置于冰水混合物中，位置和浸入深度相近，避免接触容器壁、底部。
+\item 逐步改变水浴温度直至沸点，在测量点停留，待两个探头达到热平衡后读数。
+\end{enumerate}
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\textbf{表8\quad $T$-$U$关系表}\par\smallskip
+\begin{minipage}[t]{0.58\linewidth}
+\vspace{0pt}\centering
+\small\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\linewidth}{c *{2}{>{\centering\arraybackslash}X}}
+\toprule
+组次 & $T$/${}^{\circ}\mathrm C$ & $U_{\mathrm{out}}$/mV\\\midrule
+1 & 0 & 0.08\\
+2 & 18.64 & 6.20\\
+3 & 20.03 & 6.54\\
+4 & 25.82 & 8.68\\
+5 & 33.02 & 11.29\\
+6 & 40.17 & 14.09\\
+7 & 53.85 & 19.14\\
+8 & 62.70 & 22.25\\
+9 & 70.20 & 25.13\\
+10 & 82.85 & 29.74\\
+11 & 90.13 & 32.35\\
+12 & 96.27 & 34.74\\
+13 & 100.40 & 36.14\\
+\bottomrule
+\end{tabularx}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.38\linewidth}
+\vspace{0pt}\small\raggedright
+\textbf{备注}\par\smallskip
+判断3端接线：
+\[
+\begin{aligned}
+R_{\mathrm{AB}}&=108.18\,\Omega,\\
+R_{\mathrm{AC}}&=108.40\,\Omega,\\
+R_{\mathrm{BC}}&=0.38\,\Omega.
+\end{aligned}
+\]
+可得B、C共端。\par\medskip
+$0\,{}^{\circ}\mathrm C$时调零得\par
+$R_p=99.4\,\Omega$。\par\medskip
+保持 $E=10\,\mathrm V$，\par
+$R_1=10.138\,\mathrm{k}\Omega$，\par
+$R_2=9.995\,\mathrm{k}\Omega$。
+\end{minipage}
+\end{minipage}
+\end{center}
+
+\noindent 注：
+\begin{enumerate}
+\item 冰点校准时取 $R_p$ 使此时电压最小，并记录此时电压。
+\item 此时室温为自来水温度，即第2组加热前初温。
+\item 保持加热长时间温度不变化，判断为沸点，合上盖子时沸点高于 $100\,{}^{\circ}\mathrm C$ 为合理现象。
+\end{enumerate}
+
+\subsection{拟合结果与误差分析}
+对表8的13组温度与电压数据作带截距的最小二乘线性拟合：
+\[
+U_{\mathrm{out}}=kT+b.
+\]
+\[
+k=0.3647\,\frac{\mathrm{mV}}{{}^{\circ}\mathrm C},\qquad
+b=-0.5193\,\mathrm{mV},\qquad
+r=0.9998,\quad R^2=0.9997.
+\]
+在线性近似下，以拟合斜率估计冰点处的电压灵敏度：
+\[
+k_0\simeq k=3.647\times10^{-4}\,\frac{\mathrm V}{{}^{\circ}\mathrm C}.
+\]
+\[
+\boxed{A_1=\frac{k_0(R_1+R_0)^2}{ER_1R_0}
+=\frac{k_0(R_2+R_p)^2}{ER_2R_p}
+\approx3.740\times10^{-3}\,{}^{\circ}\mathrm C^{-1}}.
+\]
+\[
+\sigma_k=\sqrt{\frac{\sum_{i=1}^{N}(U_i-kT_i-b)^2}
+{(N-2)\sum_{i=1}^{N}(T_i-\overline T)^2}}
+=|k|\sqrt{\frac{1/r^2-1}{N-2}}
+\approx0.0020\,\frac{\mathrm{mV}}{{}^{\circ}\mathrm C}.
+\]
+换算后 $\sigma_{k_0}=2.0\times10^{-6}\,\mathrm V/{}^{\circ}\mathrm C$。
+\[
+\sigma_{A_1}=\frac{(R_2+R_p)^2}{ER_2R_p}\sigma_{k_0}
+=\left|\frac{A_1}{k_0}\right|\sigma_{k_0}
+\approx2.0\times10^{-5}\,{}^{\circ}\mathrm C^{-1}.
+\]
+\[
+\boxed{A_1=(3.740\pm0.020)\times10^{-3}\,{}^{\circ}\mathrm C^{-1}}
+\]
+\begin{center}
+\begin{minipage}{0.97\linewidth}
+\centering
+\includegraphics[width=\linewidth]{../figures/非平衡电桥_线性拟合.pdf}\par
+\small 图3: 温度—输出电压关系及线性拟合
+\end{minipage}
+\end{center}
+
+\Needspace{8\baselineskip}
+\noindent\textbf{近似公式计算。}
+采用相同的拟合斜率，以近似公式重新计算：
+\[
+A_{1,\mathrm{app}}=\frac{k_0R_1}{ER_0}
+=\frac{k_0R_2}{ER_p}
+\approx3.667\times10^{-3}\,{}^{\circ}\mathrm C^{-1}.
+\]
+拟合统计不确定度相应为
+\[
+\sigma_{A_1,\mathrm{app}}=\frac{R_1}{ER_0}\sigma_{k_0}
+=\frac{R_2}{ER_p}\sigma_{k_0}
+\approx2.0\times10^{-5}\,{}^{\circ}\mathrm C^{-1},
+\]
+\[
+\boxed{A_{1,\mathrm{app}}=(3.667\pm0.020)\times10^{-3}\,{}^{\circ}\mathrm C^{-1}}
+\]
+
+\noindent\textbf{两式的近似偏差。}
+本次取值满足
+\[
+\frac{R_0}{R_1}=\frac{R_p}{R_2}=9.945\times10^{-3},\qquad
+A_1=A_{1,\mathrm{app}}\left(1+\frac{R_0}{R_1}\right)^2.
+\]
+两式结果的差值与相对偏差分别为
+\[
+\left|A_1-A_{1,\mathrm{app}}\right|=7.330\times10^{-5}\,{}^{\circ}\mathrm C^{-1},\qquad
+\frac{\left|A_1-A_{1,\mathrm{app}}\right|}{A_1}\times100\%=1.960\%.
+\]
+在当前阻值取值下，近似式引入约2\%的偏差，在允许百分之几误差的粗略估算中可以忽略该修正。若按本文拟合精度比较，该偏差约为单项拟合统计标准不确定度的3.6倍，不能视为统计上可忽略。
+
+\section{选做实验1}
+\subsection{测量步骤与原始记录}
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\textbf{表9\quad 选做实验1 $T$-$U$关系表}\par\smallskip
+\begin{minipage}[t]{0.58\linewidth}
+\vspace{0pt}\centering
+\small\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\linewidth}{c *{2}{>{\centering\arraybackslash}X}}
+\toprule
+组次 & $T$/${}^{\circ}\mathrm C$ & $U_{\mathrm{out}}$/mV\\\midrule
+1 & 0 & 0.04\\
+2 & 20.63 & 6.39\\
+3 & 30.08 & 9.26\\
+4 & 40.28 & 12.37\\
+5 & 50.27 & 15.51\\
+6 & 59.96 & 18.41\\
+7 & 69.04 & 21.05\\
+8 & 79.00 & 23.92\\
+9 & 91.85 & 27.69\\
+10 & 97.29 & 29.25\\
+11 & 100.54 & 30.17\\
+\bottomrule
+\end{tabularx}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.38\linewidth}
+\vspace{0pt}\small\raggedright
+\textbf{备注}\par\smallskip
+$0\,{}^{\circ}\mathrm C$时调零得\par
+$R_p=100.1\,\Omega$。\par\medskip
+保持 $E=1.00\,\mathrm V$，\par
+$R_1=1003.5\,\Omega$，\par
+$R_2=1000.6\,\Omega$。
+\end{minipage}
+\end{minipage}
+\end{center}
+
+\subsection{拟合结果与误差分析}
+对表9的11组温度与电压数据作带截距的最小二乘线性拟合：
+\[
+U_{\mathrm{out}}=kT+b.
+\]
+\[
+k=0.2992\,\frac{\mathrm{mV}}{{}^{\circ}\mathrm C},\qquad
+b=0.2609\,\mathrm{mV},\qquad
+r=0.9999,\quad R^2=0.9998.
+\]
+在线性近似下，以拟合斜率估计冰点处的电压灵敏度：
+\[
+k_0\simeq k=2.992\times10^{-4}\,\frac{\mathrm V}{{}^{\circ}\mathrm C}.
+\]
+\[
+\boxed{A_1=\frac{k_0(R_1+R_0)^2}{ER_1R_0}
+=\frac{k_0(R_2+R_p)^2}{ER_2R_p}
+\approx3.620\times10^{-3}\,{}^{\circ}\mathrm C^{-1}}.
+\]
+\[
+\sigma_k=\sqrt{\frac{\sum_{i=1}^{N}(U_i-kT_i-b)^2}
+{(N-2)\sum_{i=1}^{N}(T_i-\overline T)^2}}
+=|k|\sqrt{\frac{1/r^2-1}{N-2}}
+\approx0.0014\,\frac{\mathrm{mV}}{{}^{\circ}\mathrm C}.
+\]
+换算后 $\sigma_{k_0}=1.4\times10^{-6}\,\mathrm V/{}^{\circ}\mathrm C$。
+\[
+\sigma_{A_1}=\frac{(R_2+R_p)^2}{ER_2R_p}\sigma_{k_0}
+=\left|\frac{A_1}{k_0}\right|\sigma_{k_0}
+\approx1.7\times10^{-5}\,{}^{\circ}\mathrm C^{-1}.
+\]
+\[
+\boxed{A_1=(3.620\pm0.017)\times10^{-3}\,{}^{\circ}\mathrm C^{-1}}
+\]
+
+\Needspace{8\baselineskip}
+\noindent\textbf{近似公式计算。}
+采用相同的拟合斜率，以近似公式重新计算：
+\[
+A_{1,\mathrm{app}}=\frac{k_0R_1}{ER_0}
+=\frac{k_0R_2}{ER_p}
+\approx2.991\times10^{-3}\,{}^{\circ}\mathrm C^{-1}.
+\]
+拟合统计不确定度相应为
+\[
+\sigma_{A_1,\mathrm{app}}=\frac{R_1}{ER_0}\sigma_{k_0}
+=\frac{R_2}{ER_p}\sigma_{k_0}
+\approx1.4\times10^{-5}\,{}^{\circ}\mathrm C^{-1},
+\]
+\[
+\boxed{A_{1,\mathrm{app}}=(2.991\pm0.014)\times10^{-3}\,{}^{\circ}\mathrm C^{-1}}
+\]
+\begin{center}
+\begin{minipage}{0.97\linewidth}
+\centering
+\includegraphics[width=\linewidth]{../figures/选做实验1_线性拟合.pdf}\par
+\small 图4: 选做实验1温度—输出电压关系及线性拟合
+\end{minipage}
+\end{center}
+
+\noindent\textbf{两式差异增大的原因。}
+两式的关系为
+\[
+A_1=A_{1,\mathrm{app}}\left(1+\frac{R_0}{R_1}\right)^2,\qquad
+\frac{R_0}{R_1}=\frac{R_p}{R_2}=0.1000,
+\]
+\[
+\left(1+\frac{R_0}{R_1}\right)^2
+=1+2\frac{R_0}{R_1}+\left(\frac{R_0}{R_1}\right)^2
+=1.210.
+\]
+因此，忽略分压修正后，近似式的结果比保留修正项的结果低
+\[
+\frac{|A_1-A_{1,\mathrm{app}}|}{A_1}\times100\%=17.36\%,\qquad
+|A_1-A_{1,\mathrm{app}}|=6.284\times10^{-4}\,{}^{\circ}\mathrm C^{-1}.
+\]
+本组应采用保留分压因子的公式。
+
+\section{选做实验2}
+\noindent $R_1=10.138\,\mathrm{k}\Omega$，$R_2=9.995\,\mathrm{k}\Omega$，$E=10.00\,\mathrm V$。
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\textbf{表10\quad 平衡电桥测$R_T$ $T$-$U$关系表}\par\smallskip
+\small\renewcommand{\arraystretch}{1.1}
+\begin{tabularx}{\linewidth}{c*{2}{>{\centering\arraybackslash}X}}
+\toprule
+组次 & $T$/${}^{\circ}\mathrm C$ & 平衡时 $R_p$/$\Omega$\\\midrule
+1 & 0 & 100.02\\
+2 & 19.07 & 106.0\\
+3 & 25.69 & 108.9\\
+4 & 36.85 & 113.0\\
+5 & 51.83 & 119.0\\
+6 & 66.89 & 124.4\\
+7 & 74.75 & 127.2\\
+8 & 82.40 & 130.0\\
+9 & 100.40 & 136.4\\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{center}
+\[
+R_T=\frac{R_1}{R_2}R_p.
+\]
+
+本实验沿用1部分电路图。
+
+\[
+R_T=R_0(1+A_1T).
+\]
+
+将表10的9组平衡臂读数换算为铂电阻阻值，再作带截距的最小二乘线性拟合：
+\[
+R_T=\frac{R_1}{R_2}R_p=\frac{10138}{9995}R_p,\qquad
+R_T=R_0(1+A_1T)=kT+b.
+\]
+\[
+k=0.3738\,\frac{\Omega}{{}^{\circ}\mathrm C},\qquad
+b=101.0\,\Omega,\qquad r=0.9997,\quad R^2=0.9993.
+\]
+因此
+\[
+R_0=b=101.0\,\Omega,\qquad
+A_1=\frac{k}{b}=3.702\times10^{-3}\,{}^{\circ}\mathrm C^{-1}.
+\]
+不确定度由拟合残差估计，$N=9$。记
+\[
+s^2=\frac{\sum_{i=1}^{N}(R_{T,i}-kT_i-b)^2}{N-2},\qquad
+S_{TT}=\sum_{i=1}^{N}(T_i-\overline T)^2.
+\]
+\[
+\begin{aligned}
+\sigma_k&=\frac{s}{\sqrt{S_{TT}}}\approx0.0036\,\frac{\Omega}{{}^{\circ}\mathrm C},\\
+\sigma_{R_0}=\sigma_b&=s\sqrt{\frac1N+\frac{\overline T^2}{S_{TT}}}\approx0.22\,\Omega,\\
+\operatorname{Cov}(k,b)&=-\frac{\overline T s^2}{S_{TT}}
+=-6.712\times10^{-4}\,\frac{\Omega^2}{{}^{\circ}\mathrm C}.
+\end{aligned}
+\]
+由于斜率与截距相关，$A_1=k/b$ 的不确定度计入协方差项：
+\[
+\sigma_{A_1}=\sqrt{\frac{\sigma_k^2}{b^2}
++\frac{k^2\sigma_b^2}{b^4}
+-\frac{2k}{b^3}\operatorname{Cov}(k,b)}
+\approx4.3\times10^{-5}\,{}^{\circ}\mathrm C^{-1}.
+\]
+\[
+\boxed{R_0=(101.0\pm0.22)\,\Omega},\qquad
+\boxed{A_1=(3.702\pm0.043)\times10^{-3}\,{}^{\circ}\mathrm C^{-1}}.
+\]
+\begin{center}
+\begin{minipage}{0.97\linewidth}
+\centering
+\includegraphics[width=\linewidth]{../figures/选做实验2_RT线性拟合.pdf}\par
+\small 图5: 铂电阻阻值—温度关系及线性拟合
+\end{minipage}
+\end{center}
+
+\section{讨论与感想}
+\subsection{不确定度的主要成分与电阻测量精度}
+表7中的合成不确定度由桥臂阻值、电阻箱和检流计读数三个分量组成。比较各分量对总方差的贡献，定义
+\[
+q_j=\frac{\sigma_{x,j}^2}{\sigma_x^2}\times100\%,\qquad
+j\in\{\mathrm{arm},\mathrm b,n\}.
+\]
+以下比例使用未舍入的各项分量计算，沿用第1.2节的允差和相关性处理。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\textbf{表11\quad 电阻测量不确定度的方差贡献}\par\smallskip
+\small\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\linewidth}{c*{4}{>{\centering\arraybackslash}X}}
+\toprule
+组数 & 桥臂贡献/\% & 电阻箱贡献/\% & 读数贡献/\% & $\sigma_x$/$\Omega$\\\midrule
+1 & 46.23 & 53.06 & 0.7075 & 0.040\\
+2 & 60.53 & 36.61 & 2.851 & 0.036\\
+3 & 77.89 & 18.59 & 3.517 & 0.078\\
+4 & 78.73 & 17.86 & 3.405 & 0.078\\
+5 & 7.848 & 10.38 & 81.77 & 0.097\\
+6 & 36.11 & 62.45 & 1.445 & 0.045\\
+7 & 0 & 91.33 & 8.672 & 0.035\\\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{center}
+由
+\[
+\frac{\sigma_{x,n}}{R'}=\frac{\sigma_n}{S},\qquad
+\frac{\sigma_{x,\mathrm{arm}}}{R'}=
+\sqrt{\left(\frac{\sigma_{R_1}}{R_1}\right)^2+
+\left(\frac{\sigma_{R_2}}{R_2}\right)^2}
+\]
+可知，灵敏度提高主要压低调平读数项，桥臂和电阻箱的校准精度则决定其余分量。提高电桥法测电阻精度时，应先判断主导分量：采用经校准且温度稳定的比率臂与电阻箱，检查接触电阻和电阻箱零位；接近平衡后减小检流支路保护电阻、选用合适的检流计档位，在不过载和不过度自热的条件下提高电源电压。交换桥臂前后应保持温度和接线接触稳定，并用双向微调、重复调平检查零点漂移。若已由标准臂精度主导，单纯增大偏转或提高读数分辨率不能消除该项限制。
+
+\subsection{灵敏度测量值与理论关系的比较}
+记检流计电流灵敏度为 $S_I$（格/A），内阻为 $R_g$。在平衡点附近，将桥路等效为开路电压源及内阻 $R_{\mathrm b}$，有
+\[
+R_{\mathrm b}=(R_1\parallel R')+(R_2\parallel R_p),\qquad
+F=E\frac{R_2R_p}{(R_2+R_p)^2},\qquad
+S_{\mathrm{th}}=\frac{S_I F}{R_{\mathrm b}+R_g+R_h}.
+\]
+其中 $F$ 是单位相对电阻变化对应的开路电压响应。用各组实测电源电压、表1的桥臂实测值和表3的平衡臂读数代入，得到表12。
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\textbf{表12\quad 灵敏度理论表达式中的电路参数与测量值}\par\smallskip
+\small\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\linewidth}{c*{3}{>{\centering\arraybackslash}X}}
+\toprule
+组数 & $F$/V & $R_{\mathrm b}$/$\Omega$ & $S_{\mathrm{meas}}$/格\\\midrule
+1 & 0.3731 & 49.65 & $2.970\times10^3$\\
+2 & 0.3810 & 282.6 & $1.693\times10^3$\\
+3 & 0.006668 & 67.69 & $6.926\times10^2$\\
+4 & 0.006619 & 66.85 & $7.076\times10^2$\\
+5 & 0.3741 & 49.84 & $1.138\times10^2$\\
+6 & 0.1859 & 49.39 & $1.837\times10^3$\\\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{center}
+本次未记录 $S_I$、$R_g$ 及各次检流计档位，故不能独立给出绝对理论灵敏度及其相对误差。表12给出了代入理论式所需的已知部分，以下以不依赖绝对增益的比例作条件性比较。
+
+第3、4组交换两只比率臂后，灵敏度分别为 $6.926\times10^2$ 格和 $7.076\times10^2$ 格，两者差值相对其均值为2.153\%，说明交换前后的响应较接近。但与第1组比较，在相同检流计增益、$R_g$ 和最小保护电阻的假设下，由表12有
+\[
+\frac{S_{3,\mathrm{th}}}{S_{1,\mathrm{th}}}
+=\frac{F_3}{F_1}\frac{R_{\mathrm b,1}+H}{R_{\mathrm b,3}+H},
+\qquad H=R_g+R_{h,\min}\ge0,
+\]
+其范围约为 $0.01311$--$0.01787$，而测得 $S_3/S_1=0.2332$，偏离上述条件性预测。因此不能仅凭变化趋势就认为各组已与理论定量吻合；还需补记并核查检流计档位、增益、保护电阻实际值、接线与调平状态，再进行复测。
+
+理论式表明：在电路和档位固定时，$S$ 与 $E$、$S_I$ 成正比，随 $R_g$、$R_h$ 增大而减小；桥臂变化会同时改变 $F$ 和 $R_{\mathrm b}$。若记 $g=R_2/R_p$，则 $F=Eg/(1+g)^2$。在总内阻近似不变时，该分压因子在 $g=1$ 附近最大；实际选臂时还应同时计入内阻变化与电阻自热，不能仅以某一桥臂阻值的大小判断灵敏度。
+
+\section*{\#.进一步讨论}
+\noindent 1.尝试二阶拟合
+
+采用第2部分表8的13组温度—电压数据。先扣除冰点残余电压 $U(0)=0.08\,\mathrm{mV}$，以完整分压关系换算归一化电阻：
+\[
+q(T)=\frac{U(T)-U(0)}E+\frac{R_p}{R_2+R_p},\qquad
+\frac{R(T)}{R_0}=\frac{R_2}{R_p}\frac{q(T)}{1-q(T)}.
+\]
+其中 $E=10\,\mathrm V$、$R_1=10.138\,\mathrm{k}\Omega$、$R_2=9.995\,\mathrm{k}\Omega$、$R_p=99.4\,\Omega$，$R_0=R_1R_p/R_2=100.8\,\Omega$，电压代入时统一使用V。
+
+以冰点 $(0,1)$ 为归一化参照，对其余12点作固定常数项的最小二乘拟合：
+\[
+\frac{R}{R_0}=1+AT+BT^2.
+\]
+\[
+\boxed{A=(3.444\pm0.041)\times10^{-3}\,{}^{\circ}\mathrm C^{-1}},\qquad
+\boxed{B=(2.736\pm0.48)\times10^{-6}\,{}^{\circ}\mathrm C^{-2}}.
+\]
+拟合优度 $R^2=0.9997$。标准不确定度由12个非冰点数据的拟合残差估计，自由度为 $12-2=10$；上述数值以给定冰点参照和桥臂参数为条件。
+
+用未舍入的拟合系数及标准不确定度计算相对标准不确定度：
+\[
+\eta_A=\frac{\sigma_A}{|A|}\approx1.2\%,\qquad
+\eta_B=\frac{\sigma_B}{|B|}\approx18\%.
+\]
+
+\medskip
+\noindent 2.冷水温度
+
+注意到实验2、3、4的冷水初温不同，实验3中初温显著高于实验2，考虑到可能为加热后热水器残留热量影响，在实验4加水前使用剩余冰块对其进行降温，发现初温明显降低，初步验证此猜想。
+
+\medskip
+\noindent 对本次实验课后报告使用 AI 情况的说明：该课后报告由 AI 辅助生成数据表格模板和插入图片等所用 tex 语句较复杂的部分，实验分析文字和公式计算仍为手工进行，数据表内实际测量数据也手工添加以确保准确真实；数据图使用 Python 生成；二阶拟合部分参考 AI 与相关资料。
+
+\end{document}
